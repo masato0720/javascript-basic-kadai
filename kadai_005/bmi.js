@@ -5,4 +5,7 @@ let bodyWeight = 68;
 let bodyHeight = 1.7;
 
 //BMI（体格指数）の出力
-console.log(bodyWeight / (bodyHeight * bodyHeight));
+let bmi = bodyWeight / (bodyHeight * bodyHeight);
+
+//BMI（体格指数）の出力
+console.log(bmi);
