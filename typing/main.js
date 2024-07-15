@@ -103,36 +103,33 @@ const rankCheck = score => {
 
 // ゲームを終了
 const gameOver = id => {
-    clearInterval(id);
-    untypedfield.textContent = 'タイムアップ！';
+  clearInterval(id);
 
-    setTimeout(() => {
-      const result = confirm(rankCheck(score));
-      alert(`スコア: ${score}`)
-    },1000)
+  const result = confirm(rankCheck(score));
 
-    // OKボタンをクリックされたらリロードする
-    if(result == true) {
-      window.location.reload();
-    }
+  // OKボタンをクリックされたらリロードする
+  if(result == true) {
+    window.location.reload();
+  }
 };
 
 // カウントダウンタイマー
 const timer = () => {
-
   // タイマー部分のHTML要素（p要素）を取得する
   let time = count.textContent;
-
   const id = setInterval(() => {
-
     // カウントダウンする
     time--;
     count.textContent = time;
+    // カウントが０になったらタイマーを停止する
+    if (time <= 0) {
 
-    // カウントが0になったらタイマーを停止する
-    if(time <= 0) {
-      gameOver(id);
-      };
+      typedfield.style.display = 'none';
+      untypedfield.textContent = 'タイムアップ！';
+      setTimeout(() => {
+        gameOver(id);
+      },10);
+    }
   }, 1000);
 };
 
