@@ -42,6 +42,7 @@ const createText = () => {
     untyped = textLists[random];
     untypedfield.textContent = untyped;
 };
+
   //  正タイプしたときにスコアを増やす関数
   const increaseScore = () => {
     scoreCount.textContent = score;
@@ -103,8 +104,12 @@ const rankCheck = score => {
 // ゲームを終了
 const gameOver = id => {
     clearInterval(id);
-    const result = confirm(rankCheck(score));
-    alert(`スコア: ${score}`)
+    untypedfield.textContent = 'タイムアップ！';
+
+    setTimeout(() => {
+      const result = confirm(rankCheck(score));
+      alert(`スコア: ${score}`)
+    },1000)
 
     // OKボタンをクリックされたらリロードする
     if(result == true) {
@@ -127,7 +132,7 @@ const timer = () => {
     // カウントが0になったらタイマーを停止する
     if(time <= 0) {
       gameOver(id);
-    }
+      };
   }, 1000);
 };
 
